@@ -1,25 +1,50 @@
-//import liraries
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-// create a component
-const AddItem = () => {
+const AddItem = ({handleAddItem}) => {
+  const [item, setItem] = useState('');
+
   return (
-    <View style={styles.container}>
-      <Text>AddItem</Text>
+    <View>
+      <TextInput
+        placeholder="Add Item..."
+        style={styles.input}
+        value={item}
+        onChangeText={itemValue => setItem(itemValue)}
+      />
+      <TouchableOpacity style={styles.btn} onPress={() => handleAddItem(item, setItem)}>
+        <Text style={styles.btnText}>
+          <Icon name="plus" size={20} />
+          Add Item
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
-// define your styles
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#2c3e50',
+  input: {
+    height: 60,
+    padding: 8,
+    fontSize: 16,
+  },
+  btn: {
+    backgroundColor: '#c2bad8',
+    padding: 9,
+    margin: 5,
+  },
+  btnText: {
+    color: 'darkslateblue',
+    fontSize: 20,
+    textAlign: 'center',
   },
 });
 
-//make this component available to the app
 export default AddItem;
