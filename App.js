@@ -1,11 +1,39 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, FlatList } from 'react-native';
+import Header from './components/Header';
+import uuid from 'react-native-uuid';
+import ListItem from './components/ListItem';
 
 const App = () => {
+  const [items,setItems] = useState([
+    {
+      id:uuid.v4(),
+      text:"Milk"
+    },
+    {
+      id:uuid.v4(),
+      text:"Eggs"
+    },
+    {
+      id:uuid.v4(),
+      text:"Bread"
+    },
+    {
+      id:uuid.v4(),
+      text:"Juice"
+    },
+  ]);
+
+  const handleDeleteItem = (id) => {
+    setItems(prevItems => prevItems.filter(item => item.id !== id));
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Cat Meow!!</Text>
-      <Image source={{uri:"https://randomuser.me/api/portraits/men/1.jpg"}} style={styles.img} />
+      <Header title="Shopping List" />
+      <FlatList data={items} renderItem={({item})=>(
+        <ListItem key={item.id} item={item} handleDeleteItem={handleDeleteItem} />
+      )} />
     </View>
   );
 };
@@ -13,21 +41,8 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#2c3e50',
+    paddingTop:60,
   },
-  text: {
-    color:"#fff",
-    fontSize:48,
-  },
-  img:{
-    width:100,
-    height:100,
-    borderRadius: 100 / 2,
-    margin:25,
-  }
 });
 
-//make this component available to the app
 export default App;
