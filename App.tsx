@@ -1,20 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
+  Button,
   StyleSheet,
   Text, View
 } from 'react-native';
 
 const App = () => {
+  const [name, setName] = useState("kavooce");
+  const [person, setPerson] = useState({ name: "mario", age: 30 });
+
+  const handlePressText = () => {
+    setName("cat")
+  }
+
+  const handlePressObject = () => {
+    setPerson({ name: "luigi", age: 40});
+  }
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.boldText}>Hello World</Text>
+      <Text>My name is { name }</Text>
+      <Text>His name is {person.name} and his age is {person.age}</Text>
+      <View style={styles.buttonContainer}>
+        <Button title="update text" color={"white"} onPress={handlePressText} />
       </View>
-      <View style={styles.body}>
-        <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt totam ad dolore aspernatur commodi possimus vero ducimus illum enim sint.</Text>
-        <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt totam ad dolore aspernatur commodi possimus vero ducimus illum enim sint.</Text>
-        <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt totam ad dolore aspernatur commodi possimus vero ducimus illum enim sint.</Text>
+      <View style={styles.buttonContainer}>
+        <Button title="update object" color={"white"} onPress={handlePressObject} />
       </View>
     </View>
   );
@@ -27,17 +38,15 @@ const styles = StyleSheet.create({
     alignItems:"center",
     justifyContent:"center",
   },
-  header: {
-    backgroundColor:"pink",
-    padding:20,
+  buttonContainer: {
+    marginTop:20,
+    backgroundColor:"#000",
+    borderRadius:25,
+    padding:10,
+    display:"flex",
+    width:"90%",
   },
-  body:{
-    backgroundColor:"yellow",
-    padding:20,
-  },
-  boldText: {
-    fontWeight:"bold",
-  }
+  
 });
 
 export default App;
