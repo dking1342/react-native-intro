@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { FlatList, StyleSheet, View, Text, ScrollView } from 'react-native';
+import { FlatList, StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
+
+interface PeopleType {
+  name: string;
+  id:string;
+}
 
 const App = () => {
-  const [people, setPeople] = useState([
+  const [people, setPeople] = useState<PeopleType[]>([
     {name: "kavooce", id:"1"},
     {name: "mario", id:"2"},
     {name: "yoshi", id:"3"},
@@ -12,6 +17,10 @@ const App = () => {
     {name: "bowser", id:"7"},
   ])
 
+  const handleDelete = (id:string) => {
+    setPeople(prev => prev.filter(item => item.id !== id))
+  }
+
 
   return (
     <View style={styles.container}>
@@ -19,7 +28,9 @@ const App = () => {
         data={people} 
         keyExtractor={(item)=> item.id }
         renderItem={({ item }) => (
-          <Text style={styles.item}>{item.name}</Text>  
+          <TouchableOpacity onPress={()=>handleDelete(item.id)}>
+            <Text style={styles.item}>{item.name}</Text>  
+          </TouchableOpacity>
         )} 
         numColumns={2}
         key={1}
@@ -43,7 +54,6 @@ const styles = StyleSheet.create({
     backgroundColor:"pink",
     fontSize:24,
     marginHorizontal:10,
-    
   }
 
 });
