@@ -3,27 +3,27 @@ import { FlatList, StyleSheet, View, Text, ScrollView } from 'react-native';
 
 const App = () => {
   const [people, setPeople] = useState([
-    {name: "kavooce", key:"1"},
-    {name: "mario", key:"2"},
-    {name: "yoshi", key:"3"},
-    {name: "luigi", key:"4"},
-    {name: "peach", key:"5"},
-    {name: "toad", key:"6"},
-    {name: "bowser", key:"7"},
+    {name: "kavooce", id:"1"},
+    {name: "mario", id:"2"},
+    {name: "yoshi", id:"3"},
+    {name: "luigi", id:"4"},
+    {name: "peach", id:"5"},
+    {name: "toad", id:"6"},
+    {name: "bowser", id:"7"},
   ])
 
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        {
-          people.map(item => (
-            <View key={item.key}>
-              <Text style={styles.item}>{item.name}</Text>  
-            </View>
-          ))
-        }
-      </ScrollView>
+      <FlatList 
+        data={people} 
+        keyExtractor={(item)=> item.id }
+        renderItem={({ item }) => (
+          <Text style={styles.item}>{item.name}</Text>  
+        )} 
+        numColumns={2}
+        key={1}
+      />
     </View>
   );
 };
@@ -42,6 +42,8 @@ const styles = StyleSheet.create({
     padding:50,
     backgroundColor:"pink",
     fontSize:24,
+    marginHorizontal:10,
+    
   }
 
 });
