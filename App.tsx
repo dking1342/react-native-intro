@@ -1,37 +1,29 @@
-import React, {useState} from 'react';
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, StyleSheet, View, Text, ScrollView } from 'react-native';
 
 const App = () => {
-  const [name, setName] = useState<string>('kavooce');
-  const [age, setAge] = useState<number>(30);
+  const [people, setPeople] = useState([
+    {name: "kavooce", key:"1"},
+    {name: "mario", key:"2"},
+    {name: "yoshi", key:"3"},
+    {name: "luigi", key:"4"},
+    {name: "peach", key:"5"},
+    {name: "toad", key:"6"},
+    {name: "bowser", key:"7"},
+  ])
 
-  const handleChange = (val: string, type:"name" | "age") => {
-    if(type === "name"){
-      setName(val);
-    }
-    if(type === "age"){
-      setAge(Number(val));
-    }
-  };
 
   return (
     <View style={styles.container}>
-      <Text>Enter name:</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="ex John Doe"
-        onChangeText={val => handleChange(val,"name")}
-      />
-      <Text>Enter age:</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="ex 30"
-        onChangeText={val => handleChange(val,"age")}
-        keyboardType="numeric"
-      />
-      <Text>
-        name: {name || "Mario"} age: {age || 30}
-      </Text>
+      <ScrollView>
+        {
+          people.map(item => (
+            <View key={item.key}>
+              <Text style={styles.item}>{item.name}</Text>  
+            </View>
+          ))
+        }
+      </ScrollView>
     </View>
   );
 };
@@ -40,16 +32,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop:40,
+    paddingHorizontal:20,
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
-  input: {
-    borderWidth: 1,
-    borderColor: '#777',
-    padding: 8,
-    margin: 10,
-    width: 200,
-  },
+  item:{
+    marginTop:24,
+    padding:50,
+    backgroundColor:"pink",
+    fontSize:24,
+  }
+
 });
 
 export default App;
