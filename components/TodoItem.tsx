@@ -22,13 +22,8 @@ const TodoItem = ({todo, handleDelete}: TodoProp) => {
 
 // define your styles
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#2c3e50',
-  },
   todo: {
+    flex:1,
     marginTop: 16,
     padding: 16,
     backgroundColor: '#eee',

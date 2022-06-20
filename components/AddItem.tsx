@@ -36,7 +36,8 @@ const AddItem = ({handleAddItem}: PropTypes) => {
 
 const styles = StyleSheet.create({
   textContainer: {
-    marginTop: 40,
+    paddingTop: 10,
+    paddingBottom:15,
     paddingLeft: 20,
     paddingRight: 20,
   },

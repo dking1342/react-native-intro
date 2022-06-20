@@ -1,6 +1,6 @@
 //import liraries
 import React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, View,Text } from 'react-native';
 import { TodoType } from '../App';
 import TodoItem from './TodoItem';
 
@@ -16,7 +16,9 @@ const TodoList = ({todos, handleDelete}: TodoProps) => {
       <FlatList
         data={todos}
         keyExtractor={item => item.id}
+        ListFooterComponent={<View style={{height: 20}}/>}
         renderItem={({item}) => (
+          // <Text style={styles.item}>{item.text}</Text>
           <TodoItem key={item.id} todo={item} handleDelete={handleDelete} />
         )}
       />
@@ -27,8 +29,18 @@ const TodoList = ({todos, handleDelete}: TodoProps) => {
 // define your styles
 const styles = StyleSheet.create({
   list: {
-    marginTop: 20,
+    flex:1,
+    marginTop: 10,
+    padding:50,
   },
+  item:{
+    padding:30,
+    borderWidth:1,
+    color:"white",
+    borderColor:"white",
+    backgroundColor:"green",    
+    textAlign:"center",
+  }
 });
 
 //make this component available to the app

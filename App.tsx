@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
-import {Alert, StyleSheet, View} from 'react-native';
+import React, {Fragment, useState} from 'react';
+import {Alert, StyleSheet, TouchableWithoutFeedback, View, Keyboard} from 'react-native';
 import AddItem from './components/AddItem';
 import Header from './components/Header';
+import Sandbox from './components/Sandbox';
 import TodoList from './components/TodoList';
 
 export interface TodoType {
@@ -10,6 +11,7 @@ export interface TodoType {
 }
 
 const App = () => {
+  const [isSandBox,setIsSandBox] = useState(false);
   const [todos, setTodos] = useState<TodoType[]>([
     {text: 'buy coffee', id: '1'},
     {text: 'create an app', id: '2'},
@@ -37,23 +39,28 @@ const App = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Header />
-      <AddItem handleAddItem={handleAddItem} />
-      <View style={styles.content}>
-        <TodoList todos={todos} handleDelete={handleDelete} />
+    // <Sandbox />
+    <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss() }>
+      <View style={styles.container}>
+        <Header />
+        <AddItem handleAddItem={handleAddItem} />
+        <View style={styles.content}>
+          <TodoList todos={todos} handleDelete={handleDelete} />
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height:"100%",
     backgroundColor: '#fff',
   },
   content: {
     padding: 20,
+    flex:1,
   },
 });
 
