@@ -15,8 +15,8 @@ import {globalStyles} from '../styles/global';
 const Home = ({navigation}) => {
   const [reviews, setReviews] = useState([
     {title: 'Zelda', rating: 5, body: 'lorem ipsum', key: '1'},
-    {title: 'Catch Me if you can', rating: 4, body: 'lorem ipsum', key: '2'},
-    {title: 'Cast Away', rating: 3, body: 'lorem ipsum', key: '3'},
+    {title: 'Mario Bros', rating: 4, body: 'lorem ipsum', key: '2'},
+    {title: 'NBA Jam', rating: 3, body: 'lorem ipsum', key: '3'},
   ]);
 
   return (
