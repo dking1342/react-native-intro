@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 // define your styles
 export const globalStyles = StyleSheet.create({
   container: {
-    marginTop:40,
+    // marginTop:40,
     padding:24,
     flex:1,
   },
