@@ -6,11 +6,14 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
   View,
 } from 'react-native';
 import Card from '../components/Card';
 import {globalStyles} from '../styles/global';
 import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
+import ReviewForm from '../components/ReviewForm';
 
 // create a component
 const Home = ({navigation}) => {
@@ -24,18 +27,28 @@ const Home = ({navigation}) => {
   return (
     <View style={globalStyles.container}>
       <Modal visible={isModalOpen} animationType="slide">
-        <View style={styles.modalContent}>
-          <MaterialIcon
-            name="close"
-            size={24}
-            onPress={() => setIsModelOpen(false)}
-            style={{...styles.modalToggle,...styles.modalClose}}
-          />
-          <Text>Hello from the modal!</Text>
-        </View>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss()}>
+          <View style={styles.modalContent}>
+            <MaterialIcon
+              name="close"
+              size={24}
+              onPress={() => setIsModelOpen(false)}
+              style={{...styles.modalToggle, ...styles.modalClose}}
+            />
+            <ReviewForm
+              setReviews={setReviews}
+              setIsModelOpen={setIsModelOpen}
+            />
+          </View>
+        </TouchableWithoutFeedback>
       </Modal>
 
-      <MaterialIcon name="add" size={24} onPress={() => setIsModelOpen(true)} style={styles.modalToggle} />
+      <MaterialIcon
+        name="add"
+        size={24}
+        onPress={() => setIsModelOpen(true)}
+        style={styles.modalToggle}
+      />
       <FlatList
         data={reviews}
         renderItem={({item}) => (
@@ -56,20 +69,19 @@ const Home = ({navigation}) => {
 // define your styles
 const styles = StyleSheet.create({
   modalContent: {
-    flex:1,
-
+    flex: 1,
   },
-  modalToggle:{
-    marginBottom:10,
-    borderWidth:1,
-    borderColor:"#f2f2f2",
-    padding:10,
-    borderRadius:10,
-    alignSelf:"center",
+  modalToggle: {
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#f2f2f2',
+    padding: 10,
+    borderRadius: 10,
+    alignSelf: 'center',
   },
-  modalClose:{
-    marginTop:40,
-    marginBottom:0,
+  modalClose: {
+    marginTop: 40,
+    marginBottom: 0,
   },
 });
 
