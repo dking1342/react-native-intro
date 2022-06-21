@@ -1,10 +1,10 @@
 //import liraries
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react'
-import Home from './pages/Home';
-import ReviewDetails from "./pages/ReviewDetails";
-import About from "./pages/About";
+import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React from 'react';
+import ReviewDetails from './pages/ReviewDetails';
+import HomeDrawer from './routes/HomeDrawer';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,9 +13,19 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='Home' component={Home} />
-        <Stack.Screen name="Review Details" component={ReviewDetails} options={({route}) => ({title:route.params.payload.title,headerTintColor:"#444",headerStyle:{backgroundColor:"orange"}})}/>
-        <Stack.Screen name="About" component={About} />
+        <Stack.Screen
+          name="HomeStack"
+          component={HomeDrawer}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Review Details"
+          component={ReviewDetails}
+          options={({route}) => ({
+            title: route.params.payload.title,
+            headerTintColor: '#444',
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

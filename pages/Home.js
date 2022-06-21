@@ -20,26 +20,8 @@ const Home = ({navigation}) => {
 
   return (
     <View style={globalStyles.container}>
-      <Text style={globalStyles.titleText}>Home</Text>
-      <Button
-        title="Go to Review Details"
-        onPress={() => navigation.navigate('Review Details')}
-      />
-      <Button
-        title="Go to Details"
-        onPress={() => {
-          /* 1. Navigate to the Details route with params */
-          navigation.navigate('Review Details', {
-            id: 86,
-            text: 'Hello',
-          });
-        }}
-      />
-
       <FlatList
         data={reviews}
-        // keyExtractor={(review)=>review.id}
-
         renderItem={({item}) => (
           <TouchableOpacity
             onPress={() =>
