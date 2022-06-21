@@ -1,11 +1,12 @@
 //import liraries
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native';
+import { globalStyles } from '../styles/global';
 
 // create a component
 const ReviewDetails = () => {
   return (
-    <View style={styles.container}>
+    <View style={globalStyles.container}>
       <Text>ReviewDetails</Text>
     </View>
   );
@@ -13,9 +14,7 @@ const ReviewDetails = () => {
 
 // define your styles
 const styles = StyleSheet.create({
-  container: {
-    padding:24,
-  },
+
 });
 
 //make this component available to the app
