@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Card from '../components/Card';
 import {globalStyles} from '../styles/global';
 
 // create a component
@@ -27,7 +28,9 @@ const Home = ({navigation}) => {
             onPress={() =>
               navigation.navigate('Review Details', {payload: item})
             }>
-            <Text style={globalStyles.titleText}>{item.title}</Text>
+            <Card>
+              <Text style={globalStyles.titleText}>{item.title}</Text>
+            </Card>
           </TouchableOpacity>
         )}
       />
