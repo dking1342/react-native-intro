@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import ReviewDetails from './pages/ReviewDetails';
 import HomeDrawer from './routes/HomeDrawer';
+import HeaderBackground from './components/HeaderBackground';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,7 @@ const App = () => {
           options={({route}) => ({
             title: route.params.payload.title,
             headerTintColor: '#444',
+            headerBackground: () => <HeaderBackground />,
           })}
         />
       </Stack.Navigator>
