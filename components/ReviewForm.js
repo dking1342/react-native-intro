@@ -4,6 +4,7 @@ import React from 'react';
 import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
 import {globalStyles} from '../styles/global';
 import * as yup from 'yup';
+import Btn from './Btn';
 
 const ReviewSchema = yup.object({
   title: yup.string().required().min(4),
@@ -66,11 +67,7 @@ const ReviewForm = ({setReviews, setIsModelOpen}) => {
             />
             <Text style={globalStyles.errorText}>{ props.touched.rating && props.errors.rating }</Text>
 
-            <Button
-              title="Submit"
-              color="maroon"
-              onPress={props.handleSubmit}
-            />
+            <Btn text={"Save"} handlePress={props.handleSubmit} />
           </View>
         )}
       </Formik>
